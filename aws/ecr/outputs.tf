@@ -6,6 +6,10 @@ output "aws_ecr_repository_tfer--python-scheduler_id" {
   value = "${aws_ecr_repository.tfer--python-scheduler.id}"
 }
 
+output "aws_ecr_repository_tfer--simulate-database-usage_id" {
+  value = "${aws_ecr_repository.tfer--simulate-database-usage.id}"
+}
+
 output "aws_ecr_repository_tfer--spectrum-go-broker_id" {
   value = "${aws_ecr_repository.tfer--spectrum-go-broker.id}"
 }

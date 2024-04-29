@@ -1,26 +1,3 @@
-resource "aws_ecs_cluster" "tfer--InfluxDbCluster" {
-  capacity_providers = ["Infra-ECS-Cluster-InfluxDbCluster-19f2cc03-EC2CapacityProvider-LW9CzRT3EKgk"]
-
-  configuration {
-    execute_command_configuration {
-      logging = "DEFAULT"
-    }
-  }
-
-  default_capacity_provider_strategy {
-    base              = "0"
-    capacity_provider = "Infra-ECS-Cluster-InfluxDbCluster-19f2cc03-EC2CapacityProvider-LW9CzRT3EKgk"
-    weight            = "1"
-  }
-
-  name = "InfluxDbCluster"
-
-  setting {
-    name  = "containerInsights"
-    value = "disabled"
-  }
-}
-
 resource "aws_ecs_cluster" "tfer--PythonScheduler" {
   capacity_providers = ["Infra-ECS-Cluster-PythonScheduler-5d701c88-EC2CapacityProvider-Fd5qFPVIJAEx"]
 
@@ -37,6 +14,40 @@ resource "aws_ecs_cluster" "tfer--PythonScheduler" {
   }
 
   name = "PythonScheduler"
+
+  setting {
+    name  = "containerInsights"
+    value = "disabled"
+  }
+}
+
+resource "aws_ecs_cluster" "tfer--PythonSchedulerFargate" {
+  capacity_providers = ["FARGATE", "FARGATE_SPOT"]
+
+  configuration {
+    execute_command_configuration {
+      logging = "DEFAULT"
+    }
+  }
+
+  name = "PythonSchedulerFargate"
+
+  setting {
+    name  = "containerInsights"
+    value = "disabled"
+  }
+}
+
+resource "aws_ecs_cluster" "tfer--SimulateDatabaseUsage" {
+  capacity_providers = ["FARGATE", "FARGATE_SPOT"]
+
+  configuration {
+    execute_command_configuration {
+      logging = "DEFAULT"
+    }
+  }
+
+  name = "SimulateDatabaseUsage"
 
   setting {
     name  = "containerInsights"

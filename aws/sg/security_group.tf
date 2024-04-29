@@ -61,8 +61,8 @@ resource "aws_security_group" "tfer--default_sg-026b44930c5296578" {
   vpc_id = "vpc-01c2cb02a445369b1"
 }
 
-resource "aws_security_group" "tfer--influx-db-sg_sg-0acf6737ca71ee215" {
-  description = "SG for InfluxDB"
+resource "aws_security_group" "tfer--launch-wizard-1_sg-0cf9550d4d7780b49" {
+  description = "launch-wizard-1 created 2024-04-12T15:59:32.426Z"
 
   egress {
     cidr_blocks = ["0.0.0.0/0"]
@@ -73,22 +73,6 @@ resource "aws_security_group" "tfer--influx-db-sg_sg-0acf6737ca71ee215" {
   }
 
   ingress {
-    cidr_blocks      = ["0.0.0.0/0"]
-    from_port        = "0"
-    ipv6_cidr_blocks = ["::/0"]
-    protocol         = "-1"
-    self             = "false"
-    to_port          = "0"
-  }
-
-  name   = "influx-db-sg"
-  vpc_id = "vpc-01c2cb02a445369b1"
-}
-
-resource "aws_security_group" "tfer--launch-wizard-1_sg-0cf9550d4d7780b49" {
-  description = "launch-wizard-1 created 2024-04-12T15:59:32.426Z"
-
-  egress {
     cidr_blocks = ["0.0.0.0/0"]
     from_port   = "0"
     protocol    = "-1"
@@ -122,7 +106,7 @@ resource "aws_security_group" "tfer--msk-spectrum-prod-sg_sg-0a2249cbe3177c964" 
   ingress {
     from_port       = "0"
     protocol        = "-1"
-    security_groups = ["${data.terraform_remote_state.sg.outputs.aws_security_group_tfer--launch-wizard-1_sg-0cf9550d4d7780b49_id}"]
+    security_groups = ["${data.terraform_remote_state.sg.outputs.aws_security_group_tfer--default_sg-026b44930c5296578_id}", "${data.terraform_remote_state.sg.outputs.aws_security_group_tfer--launch-wizard-1_sg-0cf9550d4d7780b49_id}"]
     self            = "false"
     to_port         = "0"
   }

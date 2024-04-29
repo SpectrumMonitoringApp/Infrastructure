@@ -6,14 +6,6 @@ output "aws_cloudwatch_event_target_tfer--ecs-managed-capacity-provider-rule-002
   value = "${aws_cloudwatch_event_target.tfer--ecs-managed-capacity-provider-rule-002F-ecs-managed-capacity-provider-target.id}"
 }
 
-output "aws_cloudwatch_metric_alarm_tfer--TargetTracking-Infra-ECS-Cluster-InfluxDbCluster-19f2cc03-ECSAutoScalingGroup-MIo1iFgL0QVv-AlarmHigh-3d48d997-a377-405c-92e9-1cce52b9f522_id" {
-  value = "${aws_cloudwatch_metric_alarm.tfer--TargetTracking-Infra-ECS-Cluster-InfluxDbCluster-19f2cc03-ECSAutoScalingGroup-MIo1iFgL0QVv-AlarmHigh-3d48d997-a377-405c-92e9-1cce52b9f522.id}"
-}
-
-output "aws_cloudwatch_metric_alarm_tfer--TargetTracking-Infra-ECS-Cluster-InfluxDbCluster-19f2cc03-ECSAutoScalingGroup-MIo1iFgL0QVv-AlarmLow-bbdc8549-399a-4f13-82c4-4984897fb1e1_id" {
-  value = "${aws_cloudwatch_metric_alarm.tfer--TargetTracking-Infra-ECS-Cluster-InfluxDbCluster-19f2cc03-ECSAutoScalingGroup-MIo1iFgL0QVv-AlarmLow-bbdc8549-399a-4f13-82c4-4984897fb1e1.id}"
-}
-
 output "aws_cloudwatch_metric_alarm_tfer--TargetTracking-Infra-ECS-Cluster-PythonScheduler-5d701c88-ECSAutoScalingGroup-iUof2D0EHMrD-AlarmHigh-aa5a8897-875f-444e-b315-97e30c8d35a0_id" {
   value = "${aws_cloudwatch_metric_alarm.tfer--TargetTracking-Infra-ECS-Cluster-PythonScheduler-5d701c88-ECSAutoScalingGroup-iUof2D0EHMrD-AlarmHigh-aa5a8897-875f-444e-b315-97e30c8d35a0.id}"
 }
@@ -36,4 +28,8 @@ output "aws_cloudwatch_metric_alarm_tfer--TargetTracking-Infra-ECS-Cluster-Spect
 
 output "aws_cloudwatch_metric_alarm_tfer--TargetTracking-Infra-ECS-Cluster-SpectrumGoWorkers-1c37aa2c-ECSAutoScalingGroup-cZSV7wxTRj4q-AlarmLow-200aeec4-ff6c-41c3-8750-0c3747d3e3e4_id" {
   value = "${aws_cloudwatch_metric_alarm.tfer--TargetTracking-Infra-ECS-Cluster-SpectrumGoWorkers-1c37aa2c-ECSAutoScalingGroup-cZSV7wxTRj4q-AlarmLow-200aeec4-ff6c-41c3-8750-0c3747d3e3e4.id}"
+}
+
+output "aws_cloudwatch_metric_alarm_tfer--cpu-60-percent_id" {
+  value = "${aws_cloudwatch_metric_alarm.tfer--cpu-60-percent.id}"
 }

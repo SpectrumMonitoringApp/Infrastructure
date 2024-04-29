@@ -2,10 +2,6 @@ output "aws_security_group_tfer--default_sg-026b44930c5296578_id" {
   value = "${aws_security_group.tfer--default_sg-026b44930c5296578.id}"
 }
 
-output "aws_security_group_tfer--influx-db-sg_sg-0acf6737ca71ee215_id" {
-  value = "${aws_security_group.tfer--influx-db-sg_sg-0acf6737ca71ee215.id}"
-}
-
 output "aws_security_group_tfer--launch-wizard-1_sg-0cf9550d4d7780b49_id" {
   value = "${aws_security_group.tfer--launch-wizard-1_sg-0cf9550d4d7780b49.id}"
 }

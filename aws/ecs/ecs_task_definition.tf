@@ -58,12 +58,46 @@ resource "aws_ecs_task_definition" "tfer--task-definition-002F-python-scheduler"
   }
 }
 
-resource "aws_ecs_task_definition" "tfer--task-definition-002F-spectrum-be-prod" {
-  container_definitions    = "[{\"cpu\":0,\"environment\":[],\"environmentFiles\":[],\"essential\":true,\"image\":\"992382393502.dkr.ecr.us-east-1.amazonaws.com/spectrum-prod:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-create-group\":\"true\",\"awslogs-group\":\"/ecs/spectrum-be-prod\",\"awslogs-region\":\"us-east-1\",\"awslogs-stream-prefix\":\"ecs\"},\"secretOptions\":[]},\"mountPoints\":[],\"name\":\"spectrum-be-prod\",\"portMappings\":[{\"appProtocol\":\"http\",\"containerPort\":8000,\"hostPort\":8000,\"name\":\"8000\",\"protocol\":\"tcp\"}],\"systemControls\":[],\"ulimits\":[],\"volumesFrom\":[]}]"
+resource "aws_ecs_task_definition" "tfer--task-definition-002F-python-scheduler-fargate" {
+  container_definitions    = "[{\"cpu\":0,\"environment\":[],\"environmentFiles\":[],\"essential\":true,\"image\":\"992382393502.dkr.ecr.us-east-1.amazonaws.com/python-scheduler:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-create-group\":\"true\",\"awslogs-group\":\"/ecs/python-scheduler-fargate\",\"awslogs-region\":\"us-east-1\",\"awslogs-stream-prefix\":\"ecs\"},\"secretOptions\":[]},\"mountPoints\":[],\"name\":\"python-scheduler-fargate\",\"portMappings\":[],\"systemControls\":[],\"ulimits\":[],\"volumesFrom\":[]}]"
   cpu                      = "512"
   execution_role_arn       = "arn:aws:iam::992382393502:role/ecsTaskExecutionRole"
-  family                   = "spectrum-be-prod"
+  family                   = "python-scheduler-fargate"
   memory                   = "1024"
+  network_mode             = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+
+  runtime_platform {
+    cpu_architecture        = "X86_64"
+    operating_system_family = "LINUX"
+  }
+
+  task_role_arn = "arn:aws:iam::992382393502:role/ecsTaskExecutionRole"
+}
+
+resource "aws_ecs_task_definition" "tfer--task-definition-002F-simulate-database-usage" {
+  container_definitions    = "[{\"cpu\":0,\"environment\":[],\"environmentFiles\":[],\"essential\":true,\"image\":\"992382393502.dkr.ecr.us-east-1.amazonaws.com/simulate-database-usage:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-create-group\":\"true\",\"awslogs-group\":\"/ecs/simulate-database-usage\",\"awslogs-region\":\"us-east-1\",\"awslogs-stream-prefix\":\"ecs\"},\"secretOptions\":[]},\"mountPoints\":[],\"name\":\"simulate-database-usage\",\"portMappings\":[],\"systemControls\":[],\"ulimits\":[],\"volumesFrom\":[]}]"
+  cpu                      = "512"
+  execution_role_arn       = "arn:aws:iam::992382393502:role/ecsTaskExecutionRole"
+  family                   = "simulate-database-usage"
+  memory                   = "1024"
+  network_mode             = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+
+  runtime_platform {
+    cpu_architecture        = "X86_64"
+    operating_system_family = "LINUX"
+  }
+
+  task_role_arn = "arn:aws:iam::992382393502:role/ecsTaskExecutionRole"
+}
+
+resource "aws_ecs_task_definition" "tfer--task-definition-002F-spectrum-be-prod" {
+  container_definitions    = "[{\"cpu\":0,\"environment\":[],\"environmentFiles\":[],\"essential\":true,\"image\":\"992382393502.dkr.ecr.us-east-1.amazonaws.com/spectrum-prod:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-create-group\":\"true\",\"awslogs-group\":\"/ecs/spectrum-be-prod\",\"awslogs-region\":\"us-east-1\",\"awslogs-stream-prefix\":\"ecs\"},\"secretOptions\":[]},\"mountPoints\":[],\"name\":\"spectrum-be-prod\",\"portMappings\":[{\"appProtocol\":\"http\",\"containerPort\":8000,\"hostPort\":8000,\"name\":\"8000\",\"protocol\":\"tcp\"}],\"systemControls\":[],\"ulimits\":[],\"volumesFrom\":[]}]"
+  cpu                      = "2048"
+  execution_role_arn       = "arn:aws:iam::992382393502:role/ecsTaskExecutionRole"
+  family                   = "spectrum-be-prod"
+  memory                   = "4096"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
 

@@ -24,6 +24,19 @@ resource "aws_ecr_repository" "tfer--python-scheduler" {
   name                 = "python-scheduler"
 }
 
+resource "aws_ecr_repository" "tfer--simulate-database-usage" {
+  encryption_configuration {
+    encryption_type = "AES256"
+  }
+
+  image_scanning_configuration {
+    scan_on_push = "false"
+  }
+
+  image_tag_mutability = "MUTABLE"
+  name                 = "simulate-database-usage"
+}
+
 resource "aws_ecr_repository" "tfer--spectrum-go-broker" {
   encryption_configuration {
     encryption_type = "AES256"
